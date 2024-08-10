@@ -9,7 +9,7 @@
     "@sap/cds": "^7",
     "@sap/cds-common-content": "^2.1.0",
     "@sap/cds-hana": "^2",
-    "@sap/xssec": "^3",
+    "@sap/xssec": "^4",
     "express": "^4"
   },
   "devDependencies": {
@@ -26,7 +26,10 @@
   "cds": {
     "requires": {
       "auth": "xsuaa",
-      "db": "hana"
+      "db": "hana",
+      "[hybrid]": {
+        "auth": "xsuaa"
+      }
     }
   },
   "sapux": [

@@ -25,7 +25,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: MyHANAApp-auth
+      - name: MyHANAApp-uaa
       - name: MyHANAApp-db
 
   - name: MyHANAApp-db-deployer
@@ -44,7 +44,9 @@ modules:
       disk-quota: 256M
       memory: 256M
     build-parameters:
-      ignore: ["default-env.json",'.env']
+      ignore:
+        - "default-env.json"
+        - '.env'
     requires:
       - name: srv-api
         group: destinations
@@ -69,3 +71,13 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: MyHANAApp-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: myhanaapp
+        tenant-mode: dedicated
+        
