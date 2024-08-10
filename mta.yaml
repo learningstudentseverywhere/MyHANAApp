@@ -25,7 +25,7 @@ modules:
         properties:
           srv-url: ${default-url}
     requires:
-      - name: MyHANAApp-uaa
+      - name: MyHANAApp-auth
       - name: MyHANAApp-db
 
   - name: MyHANAApp-db-deployer
@@ -71,13 +71,5 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
-  - name: MyHANAApp-uaa
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application
-      path: ./xs-security.json
-      config:
-        xsappname: myhanaapp
-        tenant-mode: dedicated
+  
         
